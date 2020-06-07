@@ -176,3 +176,4 @@ dmypy.json
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,python,jupyternotebook
 .vscode/settings.json
+assignment2/cs231n/im2col_cython.c
