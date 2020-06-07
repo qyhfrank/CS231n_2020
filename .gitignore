@@ -1,3 +1,4 @@
+cifar-10-batches-py/
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,python,jupyternotebook
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,visualstudiocode,python,jupyternotebook
@@ -174,3 +175,4 @@ dmypy.json
 .history
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,python,jupyternotebook
+.vscode/settings.json
