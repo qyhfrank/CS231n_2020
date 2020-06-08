@@ -1,5 +1,6 @@
 coco_captioning/
 cifar-10-batches-py/
+MNIST_data/
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,python,jupyternotebook
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,visualstudiocode,python,jupyternotebook
