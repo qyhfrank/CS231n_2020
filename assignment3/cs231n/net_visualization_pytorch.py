@@ -34,7 +34,11 @@ def compute_saliency_maps(X, y, model):
     ##############################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-    pass
+    scores = model(X)
+    loss = torch.nn.CrossEntropyLoss()(scores, y)
+    loss.backward()
+    grad_X = X.grad
+    saliency = grad_X.abs().max(dim=1)[0]  # Take max values, not indices
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     ##############################################################################
@@ -76,7 +80,25 @@ def make_fooling_image(X, target_y, model):
     ##############################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-    pass
+    model.eval()
+
+    i = 1
+    while(True):
+        scores = model(X_fooling)
+        y_pred = scores.max(dim=1)[1].item()  # get the index of the max value
+
+        target_y_score = scores[0, target_y]
+        print(f"Iter {i}: target class score is {target_y_score.item()}")
+        print(f"\tPredicted class: {y_pred}; Target class: {target_y}")
+        if y_pred == target_y:
+            break
+
+        target_y_score.backward()
+        grad_X = X_fooling.grad
+        X_fooling.data += learning_rate * grad_X / grad_X.norm()
+        X_fooling.grad.zero_()
+
+        i += 1
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     ##############################################################################
@@ -94,7 +116,17 @@ def class_visualization_update_step(img, model, target_y, l2_reg, learning_rate)
     ########################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-    pass
+    model.eval()
+
+    scores = model(img)
+
+    target_y_score = scores[0, target_y]
+    target_y_score.backward()
+
+    grad_img = img.grad - 2 * l2_reg * img
+    img.data += learning_rate * grad_img / grad_img.norm()
+
+    img.grad.zero_()
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     ########################################################################

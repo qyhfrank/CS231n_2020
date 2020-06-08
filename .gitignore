@@ -1,3 +1,4 @@
+coco_captioning/
 cifar-10-batches-py/
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,python,jupyternotebook
@@ -177,3 +178,6 @@ dmypy.json
 # End of https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,python,jupyternotebook
 .vscode/settings.json
 assignment2/cs231n/im2col_cython.c
+assignment3/cs231n/datasets/imagenet_val_25.npz
+assignment3/cs231n/datasets/squeezenet.ckpt.index
+assignment3/cs231n/datasets/squeezenet.ckpt.data-00000-of-00001
